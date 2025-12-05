@@ -1,6 +1,6 @@
 #!/bin/bash
 
-EVENT_FILE="/home/caponikov/DcActivity-Shell/event.log"
+EVENT_FILE="$HOME/DcActivity-Shell/event.log"
 touch "$EVENT_FILE"
 
 update_event_log() {
