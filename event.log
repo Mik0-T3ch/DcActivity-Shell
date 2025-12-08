@@ -1,0 +1,558 @@
+CMD:source /home/caponikov/DcActivity-Shell/bash/hooks.sh
+DIR:/home/caponikov
+USER:caponikov
+CMD:[[ $- == *i* ]]
+DIR:/home/caponikov
+USER:caponikov
+CMD:[ -f "$HOME/DcActivity-Shell/src/presence.py" ]
+DIR:/home/caponikov
+USER:caponikov
+CMD:cat install.sh
+DIR:/home/caponikov
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov
+USER:caponikov
+CMD:cd DcActivity-Shell/
+DIR:/home/caponikov
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:cat install.sh
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:nano ho
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:cd bash/
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:nano hooks.sh
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:nano hooks.sh
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:nano hooks.sh
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:cat hooks.sh
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:cat hooks.sh
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:cd ..
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:git add .
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git add .
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git add .
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git add .
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git init
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git add .
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git commit -m "Mejoras del hooks.sh"
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git push
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git remote add https://github.com/Mik0-T3ch/DcActivity-Shell.git
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git remote add origin https://github.com/Mik0-T3ch/DcActivity-Shell.git
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git branch -M main
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git push -u origin main
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git pull origin main --allow-unrelated-histories
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git push -u origin main
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git add .
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git commit -m "Actualización de hooks.sh"
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git push
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git push --set-upstream origin main
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git pull origin main --allow-unrelated-histories
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git push
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git pull origin main --allow-unrelated-histories --no-rebase
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git push --set-upstream origin main
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:nano bash/hooks.sh
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:cat bash/hooks.sh
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:nano bash/hooks.sh
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git add bash/hooks.sh
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git commit -m "problema de conflicto y modificacion del hooks.sh"
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git push --set-upstream origin main
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:cd src/
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cat presence.py
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cat watcher.py
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cd ..
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:cd bash/
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:nano hooks.sh
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:cd ..
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:cd src/
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano presence.py
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano presence.py
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano watcher.py
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano hooks.sh
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cd ..
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:cd bash/
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:nano hooks.sh
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:git add .
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:git -m "pequeños errores"
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:git commit -m "pequeños errores"
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:git push
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:git status
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:git add ../src/presence.py ../src/watcher.py
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:git commit -m "pequeña actualizacion"
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:git push
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:cd
+DIR:/home/caponikov/DcActivity-Shell/bash
+USER:caponikov
+CMD:ls --color=auto
+DIR:/home/caponikov
+USER:caponikov
+CMD:cd DcActivity-Shell/
+DIR:/home/caponikov
+USER:caponikov
+CMD:git checkout --orphan clean-history
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git add .
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:bash install.sh 
+DIR:/home/caponikov
+USER:caponikov
+CMD:bash install.sh 
+DIR:/home/caponikov
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov
+USER:caponikov
+CMD:cd DcActivity-Shell/
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:cd DcActivity-Shell/
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:cd src/
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cd src/
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano presence.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano presence.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano presence.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano presence.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cd ..
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:cd ..
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:bash install.sh 
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:bash install.sh 
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:bash install.sh 
+DIR:/home/caponikov
+USER:caponikov
+CMD:bash install.sh 
+DIR:/home/caponikov
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov
+USER:caponikov
+CMD:l
+DIR:/home/caponikov
+USER:caponikov
+CMD:l
+DIR:/home/caponikov
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov
+USER:caponikov
+CMD:cd DcActivity-Shell/
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:cd DcActivity-Shell/
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:cd src/
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cd src/
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cat presence.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cat presence.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cat presence.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cat presence.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano presence.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano presence.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cat presence.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cat presence.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cat watcher.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cat watcher.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano watcher.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano watcher.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:ls
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano watcher.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano watcher.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano watcher.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:nano watcher.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cat watcher.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cat watcher.py 
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:clear
+DIR:/home/caponikov/DcActivity-Shell/src
+USER:caponikov
+CMD:cd ..
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:cd ..
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git add .
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git add .
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git checkout --orphan latest_branch
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
+CMD:git checkout --orphan latest_branch
+DIR:/home/caponikov/DcActivity-Shell
+USER:caponikov
