@@ -1,13 +1,26 @@
-print("[DEBUG] main.py loaded")
-
 import argparse
+import socket
 
-from dcactivity.core.engine import Engine
+HOST = "127.0.0.1"
+PORT = 4545
+
+
+def send_event(cmd: str):
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    try:
+        client.connect((HOST, PORT))
+
+        client.send(cmd.encode())
+
+    except Exception as e:
+        print(f"[CLIENT ERROR] {e}")
+
+    finally:
+        client.close()
 
 
 def main():
-    print("[DEBUG] main() executed")
-
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
@@ -18,11 +31,7 @@ def main():
 
     args = parser.parse_args()
 
-    print(f"[DEBUG] CMD: {args.cmd}")
-
-    engine = Engine()
-
-    engine.handle_command(args.cmd)
+    send_event(args.cmd)
 
 
 if __name__ == "__main__":

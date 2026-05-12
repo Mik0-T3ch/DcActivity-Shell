@@ -6,13 +6,13 @@ class State:
         self.last_state = None
         self.started_at = time.time()
 
-    def should_update(self, new_state: str) -> bool:
+    def should_update(self, new_state: str):
         return new_state != self.last_state
 
-    def set_state(self, new_state: str):
+    def set(self, new_state: str):
         if new_state != self.last_state:
             self.last_state = new_state
             self.started_at = time.time()
 
-    def elapsed(self) -> int:
+    def elapsed(self):
         return int(time.time() - self.started_at)
