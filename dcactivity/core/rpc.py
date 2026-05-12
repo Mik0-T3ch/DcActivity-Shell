@@ -7,33 +7,34 @@ CLIENT_ID = "1446336643320647720"
 
 class DiscordRPC:
     def __init__(self):
+        print("[DEBUG] RPC init")
+
         self.rpc = Presence(CLIENT_ID)
-        self.connected = False
 
     def connect(self):
-        if self.connected:
-            return
+        print("[DEBUG] Connecting RPC")
 
         try:
             self.rpc.connect()
-            self.connected = True
 
-            print("[RPC] Connected to Discord")
+            print("[SUCCESS] Connected to Discord")
 
         except Exception as e:
             print(f"[RPC ERROR] {e}")
 
     def update(self, state: str, elapsed: int):
+        print(f"[DEBUG] Updating: {state}")
+
         try:
             self.rpc.update(
                 details="DcActivity",
                 state=state,
                 large_image="shell",
                 large_text="Linux Activity",
-                start=int(time.time()) - elapsed
+                start=int(time.time())
             )
 
-        except Exception as e:
-            print(f"[RPC UPDATE ERROR] {e}")
+            print("[SUCCESS] RPC updated")
 
-            self.connected = False
+        except Exception as e:
+            print(f"[UPDATE ERROR] {e}")
