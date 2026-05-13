@@ -33,8 +33,6 @@ El sistema monitorea eventos relevantes del entorno de shell y actualiza automá
 
 El objetivo del proyecto es proporcionar una **presencia dinámica, técnica y automatizada** que represente de forma más auténtica el flujo de trabajo de un usuario en la terminal.
 
-<img width="268" height="138" alt="image" src="https://github.com/user-attachments/assets/13748de0-e2a5-4250-b63a-a599112e6a7d" />
-
 ---
 
 # Características
