@@ -13,6 +13,7 @@ from dcactivity.detectors.packages import detect_packages
 from dcactivity.detectors.dev import detect_dev
 from dcactivity.detectors.system import detect_system
 from dcactivity.detectors.network import detect_network
+from dcactivity.detectors.security import detect_security
 
 
 class Engine:
@@ -31,6 +32,7 @@ class Engine:
             detect_git,
             detect_packages,
             detect_dev,
+            detect_security,
             detect_system,
             detect_network
         ]
