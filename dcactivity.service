@@ -1,0 +1,14 @@
+[Unit]
+Description=DcActivity Shell Discord Rich Presence Daemon
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory={{REPO_DIR}}
+Environment=PYTHONPATH={{REPO_DIR}}
+ExecStart=/usr/bin/python3 -m dcactivity.daemon.server
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
