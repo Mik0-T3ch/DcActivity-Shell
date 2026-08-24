@@ -14,7 +14,6 @@ def get_git_context(cwd: str):
                 repo_name = parent.name
                 branch_name = None
 
-                # Intentar leer .git/HEAD de forma rapida y nativa
                 if git_dir.is_dir():
                     head_file = git_dir / "HEAD"
                     if head_file.exists():
@@ -22,7 +21,7 @@ def get_git_context(cwd: str):
                         if head_content.startswith("ref: refs/heads/"):
                             branch_name = head_content.replace("ref: refs/heads/", "")
                         elif len(head_content) >= 7:
-                            branch_name = head_content[:7]  # Detached commit sha
+                            branch_name = head_content[:7]
 
                 return {
                     "repo": repo_name,

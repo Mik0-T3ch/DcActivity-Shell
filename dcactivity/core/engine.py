@@ -11,10 +11,10 @@ from dcactivity.detectors.git import detect_git, get_git_context
 from dcactivity.detectors.editors import detect_editor
 from dcactivity.detectors.packages import detect_packages
 from dcactivity.detectors.dev import detect_dev
-from dcactivity.detectors.system import detect_system
-from dcactivity.detectors.network import detect_network
 from dcactivity.detectors.security import detect_security
 from dcactivity.detectors.hardware import detect_hardware
+from dcactivity.detectors.system import detect_system
+from dcactivity.detectors.network import detect_network
 
 
 class Engine:
@@ -41,7 +41,6 @@ class Engine:
 
         self.rpc.connect()
 
-        # Iniciar worker de idle en segundo plano
         self._idle_thread = threading.Thread(target=self._idle_checker, daemon=True)
         self._idle_thread.start()
 
@@ -99,7 +98,6 @@ class Engine:
         self.current_shell = shell
         self.is_idle = False
 
-        # Comprobar comandos ignorados
         ignored = self.config.get("ignored_commands", [])
         base_cmd = cmd.split()[0].lower() if cmd.split() else ""
         if base_cmd in ignored or cmd.lower() in ignored:
@@ -108,7 +106,6 @@ class Engine:
 
         detected = self.detect(cmd)
         
-        # Extraccion de datos de detector
         if isinstance(detected, dict):
             state_text = detected.get("state", "En terminal")
             small_asset = detected.get("asset")
@@ -120,7 +117,6 @@ class Engine:
             state_text = "Trabajando en terminal"
             small_asset = None
 
-        # Formato de details
         show_dir = self.config.get("show_current_dir", True)
         if show_dir and cwd:
             git_ctx = get_git_context(cwd)

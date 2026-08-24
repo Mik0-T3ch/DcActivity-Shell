@@ -133,6 +133,7 @@ def cmd_test(command_str: str):
     except UnicodeEncodeError:
         print(f"Detalles (Linea 1): {details_val.encode('ascii', 'replace').decode('ascii')}")
         print(f"Estado   (Linea 2): {state.encode('ascii', 'replace').decode('ascii')}")
+
     print(f"Large Asset       : {engine.distro.get('asset_key')}")
     print(f"Small Asset       : {asset or 'Ninguno'}")
     print("--------------------------------------------------\n")
@@ -151,7 +152,6 @@ def main():
         description="DcActivity: Discord Rich Presence para la terminal"
     )
 
-    # Subcomandos
     subparsers = parser.add_subparsers(dest="subcommand", help="Comandos disponibles")
 
     subparsers.add_parser("start", help="Inicia el daemon en segundo plano")
@@ -163,7 +163,6 @@ def main():
 
     subparsers.add_parser("config", help="Muestra la configuracion activa")
 
-    # Flags para uso directo por hooks
     parser.add_argument("--cmd", type=str, default=None, help="Comando ejecutado (para hooks)")
     parser.add_argument("--cwd", type=str, default=None, help="Directorio de trabajo")
     parser.add_argument("--shell", type=str, default=None, help="Shell usada (bash/zsh/fish)")

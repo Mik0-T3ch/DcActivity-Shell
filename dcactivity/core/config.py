@@ -22,7 +22,6 @@ class Config:
             "update_interval": 2
         }
 
-        # Cargar default del paquete
         if DEFAULT_CONFIG_PATH.exists():
             try:
                 with open(DEFAULT_CONFIG_PATH, "r", encoding="utf-8") as f:
@@ -30,7 +29,6 @@ class Config:
             except Exception as e:
                 print(f"[CONFIG ERROR] Al leer default.json: {e}")
 
-        # Sobrescribir con config del usuario si existe (~/.config/dcactivity/config.json)
         if USER_CONFIG_PATH.exists():
             try:
                 with open(USER_CONFIG_PATH, "r", encoding="utf-8") as f:

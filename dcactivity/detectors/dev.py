@@ -9,7 +9,6 @@ def detect_dev(cmd: str):
     base_cmd = tokens[0].lower()
     args_str = " ".join(tokens[1:]).lower()
 
-    # Contenedores y orquestacion
     if base_cmd in ("docker", "podman"):
         if "compose" in args_str:
             if "up" in args_str:
@@ -52,14 +51,12 @@ def detect_dev(cmd: str):
     if base_cmd in ("ansible", "ansible-playbook"):
         return {"state": "Ejecutando playbook de Ansible", "asset": "terminal"}
 
-    # Compiladores y herramientas C/C++
     if base_cmd in ("gcc", "g++", "clang", "clang++"):
         return {"state": f"Compilando con {base_cmd}", "asset": "c"}
 
     if base_cmd in ("make", "cmake", "ninja"):
         return {"state": f"Construyendo con {base_cmd}", "asset": "c"}
 
-    # Go
     if base_cmd == "go":
         if "run" in args_str:
             return {"state": "Ejecutando app en Go", "asset": "go"}
@@ -69,7 +66,6 @@ def detect_dev(cmd: str):
             return {"state": "Ejecutando tests de Go", "asset": "go"}
         return {"state": "Programando en Go", "asset": "go"}
 
-    # Python
     if base_cmd in ("python", "python3", "ipython", "ptpython"):
         if len(tokens) > 1 and not tokens[1].startswith("-"):
             script_name = tokens[1].split("/")[-1]
@@ -79,14 +75,12 @@ def detect_dev(cmd: str):
     if base_cmd == "pytest":
         return {"state": "Corriendo suite de tests (pytest)", "asset": "python"}
 
-    # Node / JS / TS
     if base_cmd in ("node", "deno", "bun"):
         if len(tokens) > 1 and not tokens[1].startswith("-"):
             file_name = tokens[1].split("/")[-1]
             return {"state": f"Ejecutando {file_name}", "asset": "node"}
         return {"state": f"Interprete interactivo {base_cmd}", "asset": "node"}
 
-    # Bases de datos
     if base_cmd in ("psql", "mysql", "mongosh", "redis-cli", "sqlite3"):
         return {"state": f"Conectado a BD ({base_cmd})", "asset": "terminal"}
 

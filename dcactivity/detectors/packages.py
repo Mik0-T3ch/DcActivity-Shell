@@ -6,14 +6,12 @@ def detect_packages(cmd: str):
     if not tokens:
         return None
 
-    # Si empieza con sudo, saltar al comando real
     if tokens[0] == "sudo" and len(tokens) > 1:
         tokens = tokens[1:]
 
     base_cmd = tokens[0].lower()
     args_str = " ".join(tokens[1:]).lower()
 
-    # Arch Linux
     if base_cmd in ("pacman", "yay", "paru"):
         if "-syu" in args_str or "-syyu" in args_str:
             return {"state": f"Actualizando sistema ({base_cmd})", "asset": "package"}
@@ -23,7 +21,6 @@ def detect_packages(cmd: str):
             return {"state": f"Eliminando paquetes ({base_cmd})", "asset": "package"}
         return {"state": f"Gestionando paquetes ({base_cmd})", "asset": "package"}
 
-    # Debian / Ubuntu
     if base_cmd in ("apt", "apt-get"):
         if "update" in args_str or "upgrade" in args_str or "dist-upgrade" in args_str:
             return {"state": f"Actualizando repositorios ({base_cmd})", "asset": "package"}
@@ -38,7 +35,6 @@ def detect_packages(cmd: str):
             return {"state": "Instalando paquete .deb", "asset": "package"}
         return {"state": "Gestionando paquetes dpkg", "asset": "package"}
 
-    # Fedora / RHEL
     if base_cmd in ("dnf", "yum"):
         if "update" in args_str or "upgrade" in args_str:
             return {"state": f"Actualizando sistema ({base_cmd})", "asset": "package"}
@@ -49,7 +45,6 @@ def detect_packages(cmd: str):
     if base_cmd == "rpm":
         return {"state": "Gestionando paquetes RPM", "asset": "package"}
 
-    # openSUSE
     if base_cmd == "zypper":
         if "dup" in args_str or "up" in args_str:
             return {"state": "Actualizando openSUSE (zypper)", "asset": "package"}
@@ -57,7 +52,6 @@ def detect_packages(cmd: str):
             return {"state": "Instalando paquetes (zypper)", "asset": "package"}
         return {"state": "Usando zypper", "asset": "package"}
 
-    # Alpine
     if base_cmd == "apk":
         if "add" in args_str:
             return {"state": "Instalando paquetes (apk)", "asset": "package"}
@@ -65,15 +59,12 @@ def detect_packages(cmd: str):
             return {"state": "Actualizando Alpine (apk)", "asset": "package"}
         return {"state": "Usando apk", "asset": "package"}
 
-    # Gentoo
     if base_cmd == "emerge":
         return {"state": "Compilando e instalando con emerge", "asset": "package"}
 
-    # Nix / Guix
     if base_cmd in ("nix", "nix-shell", "nix-env", "nixos-rebuild"):
         return {"state": f"Operando Nix ({base_cmd})", "asset": "package"}
 
-    # Flatpak & Snap & Brew
     if base_cmd == "flatpak":
         if "install" in args_str:
             return {"state": "Instalando Flatpak", "asset": "package"}
@@ -87,7 +78,6 @@ def detect_packages(cmd: str):
     if base_cmd == "brew":
         return {"state": "Gestionando con Homebrew", "asset": "package"}
 
-    # Lenguajes
     if base_cmd in ("pip", "pip3"):
         if "install" in args_str:
             return {"state": "Instalando librerias Python", "asset": "python"}

@@ -8,7 +8,6 @@ SYSTEMD_USER_DIR="$HOME/.config/systemd/user"
 
 echo ">>> Instalando DcActivity-Shell desde $REPO_DIR..."
 
-# 1. Dependencias Python
 if command -v pip3 >/dev/null 2>&1; then
     echo " - Instalando dependencias de Python..."
     pip3 install -r "$REPO_DIR/requirements.txt" 2>/dev/null || {
@@ -19,18 +18,15 @@ else
     echo "!! Aviso: pip3 no encontrado. Asegurate de instalar pypresence."
 fi
 
-# 2. Directorio de configuracion de usuario
 mkdir -p "$CONFIG_DIR"
 if [ ! -f "$CONFIG_DIR/config.json" ]; then
     cp "$REPO_DIR/dcactivity/config/default.json" "$CONFIG_DIR/config.json"
     echo " - Creada configuracion en $CONFIG_DIR/config.json"
 fi
 
-# 3. Permisos
 chmod +x "$REPO_DIR/dcactivity/collectors/hooks.sh" 2>/dev/null || true
 chmod +x "$REPO_DIR/dcactivity/collectors/hooks.zsh" 2>/dev/null || true
 
-# 4. Hooks para Bash
 if [ -f "$HOME/.bashrc" ]; then
     BASH_HOOK="export PYTHONPATH=\"$REPO_DIR:\$PYTHONPATH\"\nsource \"$REPO_DIR/dcactivity/collectors/hooks.sh\""
     if ! grep -q "dcactivity/collectors/hooks.sh" "$HOME/.bashrc"; then
@@ -39,7 +35,6 @@ if [ -f "$HOME/.bashrc" ]; then
     fi
 fi
 
-# 5. Hooks para Zsh
 if [ -f "$HOME/.zshrc" ]; then
     ZSH_HOOK="export PYTHONPATH=\"$REPO_DIR:\$PYTHONPATH\"\nsource \"$REPO_DIR/dcactivity/collectors/hooks.zsh\""
     if ! grep -q "dcactivity/collectors/hooks.zsh" "$HOME/.zshrc"; then
@@ -48,7 +43,6 @@ if [ -f "$HOME/.zshrc" ]; then
     fi
 fi
 
-# 6. Hooks para Fish
 FISH_CONFIG_DIR="$HOME/.config/fish"
 if [ -d "$FISH_CONFIG_DIR" ] || command -v fish >/dev/null 2>&1; then
     mkdir -p "$FISH_CONFIG_DIR"
@@ -61,7 +55,6 @@ if [ -d "$FISH_CONFIG_DIR" ] || command -v fish >/dev/null 2>&1; then
     fi
 fi
 
-# 7. Configuracion de Systemd User Service
 if command -v systemctl >/dev/null 2>&1; then
     mkdir -p "$SYSTEMD_USER_DIR"
     sed "s|{{REPO_DIR}}|$REPO_DIR|g" "$REPO_DIR/dcactivity.service" > "$SYSTEMD_USER_DIR/dcactivity.service" 2>/dev/null || true

@@ -1,12 +1,9 @@
 #!/bin/zsh
 
-# DcActivity Hook para Zsh
-
 _dcactivity_zsh_preexec() {
     local cmd="$1"
     [[ -z "$cmd" ]] && return
 
-    # Evitar llamadas recursivas
     [[ "$cmd" == *"dcactivity.cli.main"* ]] && return
     [[ "$cmd" == *"_dcactivity_"* ]] && return
 
