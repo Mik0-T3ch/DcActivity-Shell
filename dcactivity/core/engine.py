@@ -1,4 +1,5 @@
 import os
+import threading
 import time
 
 from dcactivity.core.rpc import DiscordRPC
@@ -21,6 +22,9 @@ class Engine:
         self.rpc = DiscordRPC(client_id=client_id)
         self.state = State()
         self.distro = get_distro_info()
+        self.current_cwd = ""
+        self.current_shell = "terminal"
+        self.is_idle = False
 
         self.detectors = [
             detect_editor,
@@ -33,6 +37,10 @@ class Engine:
 
         self.rpc.connect()
 
+        # Iniciar worker de idle en segundo plano
+        self._idle_thread = threading.Thread(target=self._idle_checker, daemon=True)
+        self._idle_thread.start()
+
     def format_path(self, cwd: str) -> str:
         if not cwd:
             return ""
@@ -43,20 +51,55 @@ class Engine:
             return "~" + cwd[len(home):]
         return os.path.basename(cwd) or cwd
 
+    def _idle_checker(self):
+        while True:
+            time.sleep(5)
+            idle_timeout = self.config.get("idle_timeout", 180)
+            if idle_timeout <= 0:
+                continue
+
+            if not self.is_idle and self.state.idle_seconds() >= idle_timeout:
+                self.is_idle = True
+                idle_text = self.config.get("idle_text", "Inactivo en terminal")
+                details_text = f"📁 {self.format_path(self.current_cwd)}" if self.current_cwd else self.distro.get("name", "Linux")
+                large_image = self.distro.get("asset_key", "shell")
+                large_text = f"{self.distro.get('name', 'Linux')} (Idle)"
+
+                self.rpc.update(
+                    details=details_text,
+                    state=idle_text,
+                    large_image=large_image,
+                    large_text=large_text,
+                    small_image=None,
+                    small_text="Idle",
+                    start_time=self.state.started_at
+                )
+
     def handle_event(self, event_data):
         if isinstance(event_data, str):
             cmd = event_data
-            cwd = ""
-            shell = "terminal"
+            cwd = self.current_cwd
+            shell = self.current_shell
         elif isinstance(event_data, dict):
             cmd = event_data.get("cmd", "")
-            cwd = event_data.get("cwd", "")
-            shell = event_data.get("shell", "terminal")
+            cwd = event_data.get("cwd", self.current_cwd)
+            shell = event_data.get("shell", self.current_shell)
         else:
             return
 
         cmd = cmd.strip()
         if not cmd:
+            return
+
+        self.current_cwd = cwd
+        self.current_shell = shell
+        self.is_idle = False
+
+        # Comprobar comandos ignorados
+        ignored = self.config.get("ignored_commands", [])
+        base_cmd = cmd.split()[0].lower() if cmd.split() else ""
+        if base_cmd in ignored or cmd.lower() in ignored:
+            self.state.touch()
             return
 
         detected = self.detect(cmd)

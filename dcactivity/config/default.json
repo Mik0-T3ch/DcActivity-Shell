@@ -1,6 +1,14 @@
 {
+  "client_id": "1446336643320647720",
   "privacy_mode": false,
-  "show_full_command": false,
-  "max_command_length": 25,
+  "show_current_dir": true,
+  "show_distro": true,
+  "idle_timeout": 180,
+  "idle_text": "Inactivo en terminal",
+  "ignored_commands": [
+    "clear",
+    "history",
+    "exit"
+  ],
   "update_interval": 2
 }
