@@ -4,20 +4,20 @@
 
 **Rich Presence de Discord basado en tu actividad real en la terminal de Linux**
 
-Una herramienta ligera que detecta lo que haces en tu terminal y lo refleja automáticamente en tu estado de Discord.
+Una herramienta ligera y modular que detecta lo que haces en tu shell y lo refleja en tiempo real en tu estado de Discord.
 
 <br>
 
 <p>
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=py,bash,linux,discord,git,github&perline=6" />
+    <img src="https://skillicons.dev/icons?i=py,bash,linux,discord,git,github,docker,rust&perline=8" />
   </a>
 </p>
 
 <p>
   <img src="https://img.shields.io/badge/Plataforma-Linux-black?style=for-the-badge&logo=linux">
   <img src="https://img.shields.io/badge/Lenguaje-Python-blue?style=for-the-badge&logo=python">
-  <img src="https://img.shields.io/badge/Scripting-Bash-grey?style=for-the-badge&logo=gnubash">
+  <img src="https://img.shields.io/badge/Shells-Bash%20|%20Zsh%20|%20Fish-grey?style=for-the-badge&logo=gnubash">
   <img src="https://img.shields.io/badge/Integración-Discord%20RPC-5865F2?style=for-the-badge&logo=discord">
 </p>
 
@@ -27,111 +27,149 @@ Una herramienta ligera que detecta lo que haces en tu terminal y lo refleja auto
 
 # Descripción
 
-**DcActivity-Shell** es una herramienta diseñada para usuarios de Linux que desean que su **Discord Rich Presence refleje su actividad real dentro de la terminal**.
+**DcActivity-Shell** es un daemon ligero para Linux que monitoriza la actividad de tu shell favorita (**Bash**, **Zsh** o **Fish**) y la envía como Rich Presence a Discord mediante comunicación IPC/Sockets de baja latencia.
 
-El sistema monitorea eventos relevantes del entorno de shell y actualiza automáticamente el estado en Discord con información contextual como comandos ejecutados, directorios activos o el uso de editores de texto.
-
-El objetivo del proyecto es proporcionar una **presencia dinámica, técnica y automatizada** que represente de forma más auténtica el flujo de trabajo de un usuario en la terminal.
+El objetivo es proporcionar una **presencia dinámica, técnica y contextual** que represente tu flujo de trabajo (editores de código, control de versiones, contenedores, gestores de paquetes y herramientas del sistema).
 
 ---
 
-# Características
+# Características principales
 
-- **Detección del directorio actual**  
-  Muestra en Discord la ubicación en la que estás trabajando dentro del sistema.
+- **Detección automática de distribuciones Linux**  
+  Identifica distribuciones como Arch Linux, Debian, Ubuntu, Fedora, Kali, Manjaro, openSUSE, Alpine, Void, NixOS, entre otras.
 
-- **Registro de comandos ejecutados**  
-  Refleja actividad relevante dentro de la terminal.
+- **Soporte multi-shell**  
+  Hooks nativos y no intrusivos para **Bash**, **Zsh** y **Fish**.
 
-- **Detección de editores de texto**  
-  Identifica cuando se están editando archivos usando herramientas como `nano`.
+- **Gestores de paquetes**  
+  Detección contextual de operaciones en `pacman`, `yay`, `paru`, `apt`, `dnf`, `zypper`, `apk`, `nix`, `flatpak`, `snap`, `cargo`, `npm`, `pnpm`, `bun` y `pip`.
 
-- **Reconocimiento de privilegios elevados**  
-  Detecta cuando se ejecutan comandos con `sudo` o en modo root.
+- **Entornos de desarrollo y DevOps**  
+  Reconoce comandos de `docker`, `docker compose`, `kubectl`, `helm`, `terraform`, `ansible`, `gcc`, `make`, `go`, `python` y suites de tests (`pytest`).
 
-- **Integración automática con la terminal**  
-  Una vez instalado, el sistema funciona sin intervención manual.
+- **Control de versiones con Git**  
+  Detecta acciones como `commit`, `push`, `pull`, `checkout`, `merge`, `rebase`, `clone`, `status`, etc.
 
-- **Ligero y eficiente**  
-  Diseñado para ejecutarse sin afectar el rendimiento del sistema.
+- **Editores de texto y terminal**  
+  Identifica si estás editando archivos con `Neovim`, `Vim`, `Nano`, `Micro`, `Helix`, `Emacs` o `VS Code`.
+
+- **Detección de estado Idle / Inactividad**  
+  Cambia automáticamente el estado a inactivo si no se ejecutan comandos tras un tiempo configurable.
+
+- **Modo Privacidad y Personalización**  
+  Oculta nombres de archivos o comandos específicos mediante configuración en JSON.
+
+- **Servicio Systemd de usuario**  
+  Ejecución en segundo plano sin ralentizar el inicio de sesión.
 
 ---
 
-# Funcionamiento
-
-El sistema funciona monitoreando la actividad del entorno de shell y procesando los eventos relevantes para enviarlos a Discord mediante Rich Presence.
+# Arquitectura
 
 ```
-Terminal Linux
-     │
-     │ Monitoreo de actividad
-     ▼
-Procesamiento con Python
-     │
-     │ Actualización de presencia
-     ▼
-Discord Rich Presence
+  ┌─────────────────────────────────────────────────┐
+  │         Terminal (Bash / Zsh / Fish)            │
+  └────────────────────────┬────────────────────────┘
+                           │ (Hook asíncrono)
+                           ▼
+  ┌─────────────────────────────────────────────────┐
+  │           dcactivity.cli.main (JSON)            │
+  └────────────────────────┬────────────────────────┘
+                           │ (Socket IPC 127.0.0.1:4545)
+                           ▼
+  ┌─────────────────────────────────────────────────┐
+  │          dcactivity.daemon (Engine)             │
+  │    ├─ Detectores (Distro, Git, Dev, PKG, etc.)  │
+  │    ├─ Temporizador de Inactividad (Idle)        │
+  │    └─ Discord RPC (pypresence)                  │
+  └────────────────────────┬────────────────────────┘
+                           │
+                           ▼
+  ┌─────────────────────────────────────────────────┐
+  │               Discord Rich Presence             │
+  └─────────────────────────────────────────────────┘
 ```
-
-Esto permite que Discord muestre información contextual basada en lo que el usuario está haciendo en la terminal.
 
 ---
 
 # Requisitos
 
-Antes de instalar el proyecto es recomendable tener:
-
-- Linux
-- Python 3
-- Git
-- Discord ejecutándose en el sistema
+- Linux (cualquier distribución)
+- Python 3.8+
+- Discord (App nativa o cliente Flatpak/Snap)
 
 ---
 
 # Instalación
 
 ### 1. Clonar el repositorio
-
 ```bash
 git clone https://github.com/Mik0-T3ch/DcActivity-Shell.git
 cd DcActivity-Shell
 ```
 
-### 2. Dar permisos de ejecución
-
+### 2. Ejecutar el instalador automático
 ```bash
 chmod +x install.sh
-```
-
-### 3. Ejecutar el instalador
-
-```bash
 ./install.sh
 ```
 
----
-
-# Uso
-
-Después de la instalación:
-
-1. Reinicia tu terminal.
-2. El script comenzará a ejecutarse automáticamente.
-3. Discord actualizará tu Rich Presence según tu actividad en la terminal.
-
-No es necesario ejecutar comandos adicionales durante el uso normal.
+El script configurará:
+- Las dependencias de Python
+- Los hooks para tus shells instaladas (`~/.bashrc`, `~/.zshrc` o `~/.config/fish/config.fish`)
+- El servicio en segundo plano de Systemd (`systemctl --user enable --now dcactivity`)
 
 ---
 
-# Casos de uso
+# Configuración
 
-Este proyecto está pensado principalmente para:
+Puedes personalizar el comportamiento en `~/.config/dcactivity/config.json`:
 
-- usuarios de Linux
-- desarrolladores
-- administradores de sistemas
-- entusiastas de la terminal
-- personas que desean personalizar su presencia en Discord
+```json
+{
+  "client_id": "1446336643320647720",
+  "privacy_mode": false,
+  "show_current_dir": true,
+  "show_distro": true,
+  "idle_timeout": 180,
+  "idle_text": "Inactivo en terminal",
+  "ignored_commands": [
+    "clear",
+    "history",
+    "exit"
+  ],
+  "update_interval": 2
+}
+```
+
+### Opciones disponibles:
+- `client_id`: ID de la aplicación de Discord (puedes usar la tuya si deseas cambiar las imágenes).
+- `privacy_mode`: Oculta el comando/archivo y solo muestra "Trabajando en terminal".
+- `show_current_dir`: Muestra el directorio actual (`📁 ~/mi-proyecto`).
+- `idle_timeout`: Segundos de inactividad antes de cambiar a estado Idle (`0` para desactivar).
+- `ignored_commands`: Lista de comandos que no alteran el estado de Discord.
+
+---
+
+# Generación de Assets para Discord
+
+El proyecto incluye un generador puro de iconos en PNG para todas las distros y herramientas soportadas:
+
+```bash
+python3 -m dcactivity.utils.asset_gen
+```
+
+Los assets generados en `dcactivity/assets/` pueden subirse directamente a tu aplicación en el [Portal de Desarrolladores de Discord](https://discord.com/developers/applications) en la sección **Rich Presence > Art Assets**.
+
+---
+
+# Desinstalación
+
+Para remover completamente los hooks y el servicio:
+```bash
+chmod +x uninstall.sh
+./uninstall.sh
+```
 
 ---
 
@@ -140,25 +178,25 @@ Este proyecto está pensado principalmente para:
 ```
 DcActivity-Shell
 │
-├── src/
-├── bash/
-├── assets/
-├── install.sh
-├── requirements.txt
+├── dcactivity/
+│   ├── assets/              # Iconos e imágenes para Rich Presence
+│   ├── cli/                 # Cliente CLI ligero para los hooks
+│   ├── collectors/          # Hooks para Bash, Zsh y Fish
+│   ├── config/              # Configuración predeterminada
+│   ├── core/                # Motor central, State, Config y RPC
+│   ├── daemon/              # Servidor daemon TCP / IPC
+│   ├── detectors/           # Módulos de detección (distro, git, dev, pkg...)
+│   └── utils/               # Utilidades y generador de assets
+│
+├── dcactivity.service       # Unidad Systemd de usuario
+├── install.sh               # Instalador interactivo
+├── uninstall.sh             # Desinstalador limpio
+├── requirements.txt         # Dependencias de Python
 └── README.md
 ```
 
 ---
 
-# Autor
-
-**El gatito miau miau :3**
-
-GitHub  
-https://github.com/Mik0-T3ch
-
----
-
 # Licencia
 
-Este proyecto está distribuido bajo la licencia **Apache 2.0**.
+Distribuido bajo la licencia **Apache 2.0**.
