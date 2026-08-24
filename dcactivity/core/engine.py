@@ -14,6 +14,7 @@ from dcactivity.detectors.dev import detect_dev
 from dcactivity.detectors.system import detect_system
 from dcactivity.detectors.network import detect_network
 from dcactivity.detectors.security import detect_security
+from dcactivity.detectors.hardware import detect_hardware
 
 
 class Engine:
@@ -33,6 +34,7 @@ class Engine:
             detect_packages,
             detect_dev,
             detect_security,
+            detect_hardware,
             detect_system,
             detect_network
         ]
