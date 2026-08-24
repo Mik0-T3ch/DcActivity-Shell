@@ -7,7 +7,7 @@ from dcactivity.core.state import State
 from dcactivity.core.config import Config
 
 from dcactivity.detectors.distro import get_distro_info
-from dcactivity.detectors.git import detect_git
+from dcactivity.detectors.git import detect_git, get_git_context
 from dcactivity.detectors.editors import detect_editor
 from dcactivity.detectors.packages import detect_packages
 from dcactivity.detectors.dev import detect_dev
@@ -119,8 +119,12 @@ class Engine:
         # Formato de details
         show_dir = self.config.get("show_current_dir", True)
         if show_dir and cwd:
-            short_path = self.format_path(cwd)
-            details_text = f"📁 {short_path}"
+            git_ctx = get_git_context(cwd)
+            if git_ctx:
+                details_text = f"📂 {git_ctx['repo']} ({git_ctx['branch']})"
+            else:
+                short_path = self.format_path(cwd)
+                details_text = f"📁 {short_path}"
         else:
             details_text = f"{self.distro.get('name', 'Linux')} ({shell})"
 

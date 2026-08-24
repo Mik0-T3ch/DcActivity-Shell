@@ -1,3 +1,39 @@
+import os
+from pathlib import Path
+
+
+def get_git_context(cwd: str):
+    if not cwd:
+        return None
+
+    try:
+        current_dir = Path(cwd).resolve()
+        for parent in [current_dir] + list(current_dir.parents):
+            git_dir = parent / ".git"
+            if git_dir.exists():
+                repo_name = parent.name
+                branch_name = None
+
+                # Intentar leer .git/HEAD de forma rapida y nativa
+                if git_dir.is_dir():
+                    head_file = git_dir / "HEAD"
+                    if head_file.exists():
+                        head_content = head_file.read_text(encoding="utf-8", errors="ignore").strip()
+                        if head_content.startswith("ref: refs/heads/"):
+                            branch_name = head_content.replace("ref: refs/heads/", "")
+                        elif len(head_content) >= 7:
+                            branch_name = head_content[:7]  # Detached commit sha
+
+                return {
+                    "repo": repo_name,
+                    "branch": branch_name or "main"
+                }
+    except Exception:
+        pass
+
+    return None
+
+
 def detect_git(cmd: str):
     tokens = cmd.strip().split()
     if not tokens:
